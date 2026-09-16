@@ -1,5 +1,0 @@
-{
-  "version": 1,
-  "include": ["/sunset-forecast", "/sunset-forecast/*"],
-  "exclude": []
-}
