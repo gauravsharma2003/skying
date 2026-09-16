@@ -1,4 +1,4 @@
-const BASE_URL = 'https://skying.gauravsharma.cc';
+const BASE_URL = 'https://skyingg.gauravsharma.cc';
 const GEO_SEARCH = 'https://photon.komoot.io/api/';
 const WEATHER = 'https://api.open-meteo.com/v1/forecast';
 
@@ -105,7 +105,7 @@ async function geocode(query) {
   url.searchParams.set('q', query);
   url.searchParams.set('limit', '1');
   url.searchParams.set('lang', 'en');
-  const response = await fetch(url, { headers: { 'User-Agent': 'Skying/1.0 (+https://skying.gauravsharma.cc/)' } });
+  const response = await fetch(url, { headers: { 'User-Agent': 'Skying/1.0 (+https://skyingg.gauravsharma.cc/)' } });
   if (!response.ok) throw new Error('Geocoding unavailable');
   const body = await response.json();
   const feature = body.features?.[0];
@@ -244,7 +244,7 @@ async function handleCity(request, env, rawCity) {
 
 const LOCATIONS = [
   ['India', [
-    ['Delhi', 'delhi-india'], ['Mumbai', 'mumbai-india'], ['Bengaluru', 'bengaluru-india'], ['Chennai', 'chennai-india'],
+    ['New Delhi', 'new-delhi-india'], ['Mumbai', 'mumbai-india'], ['Bengaluru', 'bengaluru-india'], ['Chennai', 'chennai-india'],
     ['Kolkata', 'kolkata-india'], ['Hyderabad', 'hyderabad-india'], ['Pune', 'pune-india'], ['Jaipur', 'jaipur-india'],
     ['Ahmedabad', 'ahmedabad-india'], ['Udaipur', 'udaipur-india'], ['Jaisalmer', 'jaisalmer-india'], ['Varanasi', 'varanasi-india'],
     ['Kochi', 'kochi-india'], ['Srinagar', 'srinagar-india'], ['Leh', 'leh-india'], ['Panaji', 'panaji-india']
