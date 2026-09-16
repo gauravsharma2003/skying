@@ -1,8 +1,6 @@
 .git/
 .github/
-functions/
+.gitignore
 worker.js
 wrangler.jsonc
-_routes.json
-_headers
 .assetsignore
