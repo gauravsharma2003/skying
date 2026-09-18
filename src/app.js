@@ -59,6 +59,7 @@ import {solarClock,solarTimes,solarWindow} from './solar.js';
         mobileSearchClose: document.getElementById('mobileSearchClose'),
         mobileLocationLabel: document.getElementById('mobileLocationLabel'),
         landingLocate: document.getElementById('landingLocate'),
+        mobilePopularPlaces: document.getElementById('mobilePopularPlaces'),
         themeToggle: document.getElementById('themeToggle'),
       };
 
@@ -66,6 +67,18 @@ import {solarClock,solarTimes,solarWindow} from './solar.js';
       const searchForms = [...document.querySelectorAll('[data-search-form]')];
       const locateButtons = [...document.querySelectorAll('[data-locate]')];
       const findButtons = [...document.querySelectorAll('[data-find]')];
+
+      const popularSlugs = ['new-delhi-india','mumbai-india','london-united-kingdom','new-york-united-states','dubai-united-arab-emirates','sydney-australia'];
+      if (el.mobilePopularPlaces) {
+        popularSlugs.map(slug => LOCATIONS.find(place => place.slug === slug)).filter(Boolean).forEach(place => {
+          const button = document.createElement('button');
+          button.type = 'button';
+          button.className = 'mobile-popular-place';
+          button.innerHTML = `<span>${escapeHtml(place.name)}</span><small>${escapeHtml(place.country)}</small>`;
+          button.addEventListener('click', () => runSearch(place));
+          el.mobilePopularPlaces.appendChild(button);
+        });
+      }
 
       function applyTheme(theme) {
         const value = theme === 'dark' ? 'dark' : 'light';

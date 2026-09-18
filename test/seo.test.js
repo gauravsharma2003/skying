@@ -69,7 +69,7 @@ test('sitemap and directory contain every canonical city and no aliases or coord
  const sitemap=await readFile('dist/sitemap.xml','utf8'),directory=await readFile('dist/sunset-forecast/index.html','utf8');
  assert.equal((sitemap.match(/<loc>/g)||[]).length,51);
  for(const p of LOCATIONS){assert.ok(sitemap.includes(BASE_URL+'/sunset-forecast/'+p.slug+'</loc>'));assert.ok(directory.includes('href="/sunset-forecast/'+p.slug+'"'));for(const alias of p.aliases)assert.ok(!sitemap.includes('/'+alias+'</loc>'));}
- assert.ok(!sitemap.includes('/forecast/?'));assert.ok(shell.includes('href="/sunset-forecast/"'));assert.ok(!shell.includes('app-loader.js'));
+ assert.ok(!sitemap.includes('/forecast/?'));assert.ok(shell.includes('href="/sunset-forecast/"'));assert.ok(shell.includes('id="mobilePopularPlaces"'));assert.ok(!shell.includes('app-loader.js'));
 });
 test('HEAD produces metadata without a body and unsupported methods return 405',async()=>{
  assert.equal((await worker.fetch(new Request(BASE_URL+'/sunset-forecast/new-delhi-india',{method:'POST'}),env)).status,405);

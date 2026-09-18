@@ -57,7 +57,7 @@
         </button>
 
         <div id="headerSearch" class="search-wrap header-search hidden">
-          <button id="mobileSearchClose" type="button" class="mobile-search-close" aria-label="Close location search"><svg class="icon" aria-hidden="true"><use href="/assets/icons.svg#close" /></svg></button>
+          <button id="mobileSearchClose" type="button" class="mobile-search-close" aria-label="Close location search"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="m18 6-12 12M6 6l12 12" /></svg></button>
           <form class="search-shell" data-search-form autocomplete="off">
             <svg class="icon pin" aria-hidden="true"><use href="/assets/icons.svg#search" /></svg>
             <label for="placeHeader" class="sr-only">Search location</label>
@@ -67,6 +67,10 @@
           </form>
           <div class="suggestions" data-suggestions role="listbox"></div>
           <p class="search-status" aria-live="polite"></p>
+          <nav class="mobile-popular-search" aria-labelledby="mobilePopularTitle">
+            <p id="mobilePopularTitle" class="mobile-popular-title">Popular places</p>
+            <div id="mobilePopularPlaces" class="mobile-popular-places"></div>
+          </nav>
         </div>
 
         <button id="themeToggle" type="button" class="theme-toggle" aria-label="Switch to dark theme" title="Switch to dark theme">
