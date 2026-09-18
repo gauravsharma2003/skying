@@ -322,7 +322,7 @@ import {solarClock,solarTimes,solarWindow} from './solar.js';
       }
 
       function openMobileSearch() {
-        if (window.innerWidth > 700) return;
+        if (window.innerWidth > 767) return;
         el.header.classList.add('mobile-search-open');
         document.body.classList.add('search-modal-open');
         const input = document.getElementById('placeHeader');
@@ -383,21 +383,27 @@ import {solarClock,solarTimes,solarWindow} from './solar.js';
         el.blueDetail.textContent = solarWindow(light.blueStart,light.blueEnd,data.timezone,data.daily.time[state.selected]);
         el.localTimeNote.textContent = `Forecasts are estimates. All times are local to ${data.timezone}.`;
 
-        el.days.innerHTML = '';
+        const previousDayScroll = el.days.scrollLeft;
+        const existingDayButtons = [...el.days.querySelectorAll('.day-btn')];
+        if (existingDayButtons.length !== state.forecasts.length) el.days.innerHTML = '';
         state.forecasts.forEach((forecast, index) => {
-          const btn = document.createElement('button');
+          const btn = el.days.children[index] || document.createElement('button');
           btn.type = 'button';
           btn.setAttribute('aria-pressed', String(index===state.selected));
           btn.className = `day-btn${index === state.selected ? ' selected' : ''}`;
           const name = index === 0 ? 'Today' : niceDate(data.daily.time[index] || '').split(',')[0];
           btn.innerHTML = `<span class="day-name">${escapeHtml(name)}</span><span class="day-score">${forecast?.score ?? '—'}</span><span class="day-note">${escapeHtml(forecast?.verdict || 'Unavailable')}</span><span class="day-time">${escapeHtml(fmtTime(data.daily.sunset[index]))}</span>`;
-          btn.addEventListener('click', () => {
-            state.selected = index;
-            renderForecast(true);
-          });
-          el.days.appendChild(btn);
+          if (!btn.dataset.bound) {
+            btn.dataset.bound = 'true';
+            btn.addEventListener('click', () => {
+              state.selected = index;
+              renderForecast(true);
+            });
+          }
+          if (!btn.isConnected) el.days.appendChild(btn);
         });
-        if (focusDay) el.days.querySelector('.selected')?.focus();
+        el.days.scrollLeft = previousDayScroll;
+        if (focusDay) el.days.querySelector('.selected')?.focus({preventScroll:true});
 
         const cards = current ? [
           ['High cloud', `${Math.round(current.high)}%`, 'colour canvas'],

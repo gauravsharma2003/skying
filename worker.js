@@ -44,7 +44,6 @@ async function route(request,env) {
     let html=applyMetadata(await asset.text(),page);
     html=html.replace(/<!-- HOME_CONTENT_START -->[\s\S]*?<!-- HOME_CONTENT_END -->/,'');
     html=html.replace('<h1 class="empty-title">Will tonight’s sunset be <em>worth it?</em></h1>',`<h1 class="empty-title">${escapeHtml(place.name)}<br><em>sunset forecast</em></h1>`);
-    html=html.replace('id="emptyState" class="empty-stage"','id="emptyState" class="empty-stage city-search"');
     html=renderDashboard(html,page);
     html=html.replace('<!-- FORECAST_SUMMARY -->',forecastSummary(page));
     html=html.replace('<!-- PAGE_DATA -->',`<script>window.__SKYING_PAGE__=${safeJson(page)};</script>`);

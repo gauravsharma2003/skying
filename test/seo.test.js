@@ -19,7 +19,7 @@ test('all 43 curated routes render unique canonicals, metadata, dates and seven 
   for(const place of LOCATIONS){
    const path='/sunset-forecast/'+place.slug;
    const response=await worker.fetch(request(path),env);assert.equal(response.status,200,place.slug);
-   const html=await response.text();assert.ok(html.includes(`rel="canonical" href="${BASE_URL+path}"`));assert.ok(html.includes('id="cityHeading" class="city-heading">'+place.name));
+   const html=await response.text();assert.ok(html.includes(`rel="canonical" href="${BASE_URL+path}"`));assert.ok(html.includes('id="cityHeading" class="city-heading">'+place.name));assert.ok(html.includes('id="emptyState" class="empty-stage hidden"'));
    assert.equal((html.match(/<tr>/g)||[]).length,8);assert.ok(!html.includes('NaN'));assert.ok(!html.includes('Invalid Date'));assert.ok(!html.includes('HOME_CONTENT_START'));
    const structured=JSON.parse(html.match(/<script type="application\/ld\+json">([\s\S]*?)<\/script>/)[1]);assert.equal(structured['@graph'][1].url,BASE_URL+path);
    assert.equal(response.headers.get('link'),`<${BASE_URL+path}>; rel="canonical"`);
