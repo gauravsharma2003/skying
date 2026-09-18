@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="en">
+<html lang="en" data-theme="light">
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -67,6 +67,11 @@
           <div class="suggestions" data-suggestions role="listbox"></div>
           <p class="search-status" aria-live="polite"></p>
         </div>
+
+        <button id="themeToggle" type="button" class="theme-toggle" aria-label="Switch to dark theme" title="Switch to dark theme">
+          <svg class="icon theme-icon theme-icon-sun" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.93 4.93l1.42 1.42M17.66 17.66l1.41 1.41M2 12h2M20 12h2M4.93 19.07l1.42-1.42M17.66 6.34l1.41-1.41"/></svg>
+          <svg class="icon theme-icon theme-icon-moon" viewBox="0 0 24 24" aria-hidden="true"><path d="M20.7 15.1A9 9 0 0 1 8.9 3.3 9 9 0 1 0 20.7 15.1Z"/></svg>
+        </button>
 
       </div>
     </header>

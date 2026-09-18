@@ -59,12 +59,27 @@ import {solarClock,solarTimes,solarWindow} from './solar.js';
         mobileSearchClose: document.getElementById('mobileSearchClose'),
         mobileLocationLabel: document.getElementById('mobileLocationLabel'),
         landingLocate: document.getElementById('landingLocate'),
+        themeToggle: document.getElementById('themeToggle'),
       };
 
       const searchInputs = [...document.querySelectorAll('[data-search-input]')];
       const searchForms = [...document.querySelectorAll('[data-search-form]')];
       const locateButtons = [...document.querySelectorAll('[data-locate]')];
       const findButtons = [...document.querySelectorAll('[data-find]')];
+
+      function applyTheme(theme) {
+        const value = theme === 'dark' ? 'dark' : 'light';
+        document.documentElement.dataset.theme = value;
+        const next = value === 'light' ? 'dark' : 'light';
+        const label = `Switch to ${next} theme`;
+        if (el.themeToggle) {
+          el.themeToggle.setAttribute('aria-label', label);
+          el.themeToggle.title = label;
+        }
+        document.querySelector('meta[name="theme-color"]')?.setAttribute('content', value === 'dark' ? '#17232b' : '#e9edf0');
+      }
+
+      try { applyTheme(localStorage.getItem('skying-theme') || 'light'); } catch { applyTheme('light'); }
 
       const niceDate = iso => new Intl.DateTimeFormat('en-GB', {timeZone:'UTC',weekday:'short',month:'short',day:'numeric'}).format(new Date(`${iso}T12:00:00Z`));
       const fmtTime = iso => iso ? iso.split('T')[1]?.slice(0,5) || '—' : '—';
@@ -501,6 +516,11 @@ import {solarClock,solarTimes,solarWindow} from './solar.js';
       if (el.landingLocate) el.landingLocate.addEventListener('click', usePreciseLocation);
       if (el.mobileSearchToggle) el.mobileSearchToggle.addEventListener('click', openMobileSearch);
       if (el.mobileSearchClose) el.mobileSearchClose.addEventListener('click', closeMobileSearch);
+      if (el.themeToggle) el.themeToggle.addEventListener('click', () => {
+        const next = document.documentElement.dataset.theme === 'dark' ? 'light' : 'dark';
+        applyTheme(next);
+        try { localStorage.setItem('skying-theme', next); } catch {}
+      });
 
       document.addEventListener('click', event => {
         if (!(event.target instanceof Element) || !event.target.closest('.search-wrap')) closeSuggestions();

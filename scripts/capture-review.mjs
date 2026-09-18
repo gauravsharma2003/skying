@@ -11,7 +11,6 @@ const reviewDir = new URL('../.impeccable/review/', import.meta.url);
 await mkdir(reviewDir, { recursive: true });
 
 const page = await browser.newPage();
-await page.emulateMediaFeatures([{ name: 'prefers-color-scheme', value: 'dark' }]);
 
 async function capture(name, width, height, url, fullPage = true) {
   await page.setViewport({ width, height, deviceScaleFactor: 1 });

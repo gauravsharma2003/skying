@@ -1,0 +1,413 @@
+{
+  "schemaVersion": 1,
+  "name": "Skying",
+  "surface": "sunset forecast web application",
+  "sourceOfTruth": [
+    "index.html",
+    "style.css",
+    "src/app.js"
+  ],
+  "direction": {
+    "name": "The Light Finder",
+    "thesis": "A panoramic sky window supports the decision to go outside, followed by a local-time ruler and seven-day comparison.",
+    "audience": "Everyday sunset watchers; photography detail is secondary.",
+    "character": [
+      "calm",
+      "editorial",
+      "camera-inspired",
+      "flat",
+      "practical"
+    ]
+  },
+  "palette": {
+    "light": {
+      "colorScheme": "light",
+      "background": "#e9edf0",
+      "foreground": "#172832",
+      "card": "#f5f7f8",
+      "primary": "#b95125",
+      "primaryForeground": "#fffaf6",
+      "secondary": "#ecd2c0",
+      "secondaryForeground": "#382c23",
+      "muted": "#536570",
+      "line": "#bdcbd2",
+      "hover": "#dde5ea",
+      "focus": "#94401d"
+    },
+    "dark": {
+      "colorScheme": "dark",
+      "background": "#17232b",
+      "foreground": "#e9eff2",
+      "card": "#202f39",
+      "primary": "#e5a078",
+      "primaryForeground": "#1c252c",
+      "secondary": "#5a4034",
+      "secondaryForeground": "#ffe2cb",
+      "muted": "#b0c0ca",
+      "line": "#425561",
+      "hover": "#2c3f4a",
+      "focus": "#efb68f"
+    },
+    "usage": {
+      "primary": [
+        "Find action",
+        "landing emphasis",
+        "sunset marker",
+        "status text"
+      ],
+      "secondary": [
+        "selected day",
+        "golden-hour range",
+        "text selection",
+        "stale notice"
+      ],
+      "effects": {
+        "shadow": "none",
+        "gradients": "structural only: rules, ruler ticks, and viewfinder corners"
+      }
+    }
+  },
+  "typography": {
+    "interface": {
+      "family": "Manrope, Arial, sans-serif",
+      "localFiles": [
+        "assets/manrope-regular.ttf",
+        "assets/manrope-semibold.ttf"
+      ],
+      "weights": {
+        "regular": 400,
+        "mediumThroughExtraBold": "500 800"
+      }
+    },
+    "wordmark": {
+      "family": "Georgia, serif",
+      "style": "italic",
+      "weight": 600,
+      "desktopSizePx": 38,
+      "mobileSizePx": 31
+    },
+    "body": {
+      "sizePx": 16,
+      "lineHeight": 1.5
+    },
+    "display": {
+      "landingTitle": "clamp(38px, 4.2vw, 62px); mobile clamp(36px, 8.5vw, 54px)",
+      "forecastMessage": "clamp(28px, 3.2vw, 48px); mobile clamp(25px, 5.6vw, 36px)",
+      "forecastScorePx": {
+        "desktop": 100,
+        "tablet": 82,
+        "mobile": 64,
+        "narrow": 50
+      },
+      "sectionTitlePx": 24,
+      "tracking": "tight display tracking from -0.025em to -0.04em"
+    },
+    "numericStyle": "tabular numerals for scores, times, rulers, measurements, and tables"
+  },
+  "shape": {
+    "radiusPx": {
+      "control": 8,
+      "innerButton": 5
+    },
+    "borders": "1px solid line token",
+    "shadow": "none",
+    "icon": {
+      "defaultSizePx": 20,
+      "strokeWidth": 1.5,
+      "caps": "round",
+      "joins": "round"
+    }
+  },
+  "spacing": {
+    "observedPx": [
+      4,
+      8,
+      10,
+      12,
+      14,
+      16,
+      18,
+      20,
+      22,
+      24,
+      28,
+      30,
+      32,
+      36,
+      40,
+      42,
+      48,
+      52,
+      56,
+      64
+    ],
+    "contentMaxWidthPx": 1412,
+    "gutterByMinWidth": [
+      {
+        "minWidthPx": 0,
+        "gutterPx": 16
+      },
+      {
+        "minWidthPx": 640,
+        "gutterPx": 24
+      },
+      {
+        "minWidthPx": 768,
+        "gutterPx": 32
+      },
+      {
+        "minWidthPx": 1024,
+        "gutterPx": 40
+      },
+      {
+        "minWidthPx": 1280,
+        "gutter": "4vw"
+      },
+      {
+        "minWidthPx": 1536,
+        "gutterPx": 62
+      }
+    ],
+    "minimumTargetPx": 44,
+    "themeTargetPx": 48
+  },
+  "breakpoints": [
+    {
+      "range": "0-359px",
+      "behavior": "Narrow single-column fallback; score and verdict share a row; light details stack; centered locate icon is hidden."
+    },
+    {
+      "range": "360-639px",
+      "behavior": "Mobile stack; timing precedes the forecast panorama; seven-day row scrolls and snaps; metrics use two columns."
+    },
+    {
+      "range": "640-767px",
+      "behavior": "24px gutters with mobile composition. CSS exposes the mobile search trigger through 767px; JavaScript opens its full-screen sheet at 700px and below."
+    },
+    {
+      "range": "768-1023px",
+      "behavior": "Tablet composition; seven-day row spans the page; score stays beside the message; explanation and summary stats align in a wide row."
+    },
+    {
+      "range": "1024-1279px",
+      "behavior": "Compact desktop two-column dashboard with compressed gaps and type."
+    },
+    {
+      "range": "1280-1535px",
+      "behavior": "Full desktop composition with 4vw gutters and all seven days visible."
+    },
+    {
+      "range": "1536px+",
+      "behavior": "62px gutters and centered 1412px maximum content width."
+    },
+    {
+      "range": "height <=600px and width <=1023px",
+      "behavior": "Top spacing and panorama heights compress before text size."
+    }
+  ],
+  "themeBehavior": {
+    "default": "light",
+    "initialMarkup": "html[data-theme='light']",
+    "persistence": {
+      "storage": "localStorage",
+      "key": "skying-theme",
+      "validDarkValue": "dark",
+      "fallback": "light"
+    },
+    "systemPreference": "not used",
+    "toggle": {
+      "attribute": "data-theme",
+      "accessibleLabel": "Switch to {next} theme",
+      "lightIcon": "sun",
+      "darkIcon": "moon",
+      "metaThemeColor": {
+        "light": "#e9edf0",
+        "dark": "#17232b"
+      }
+    }
+  },
+  "composition": {
+    "shared": {
+      "headerMinHeightPx": {
+        "desktop": 88,
+        "mobile": 72
+      },
+      "header": [
+        "wordmark",
+        "descriptor or compact location control",
+        "location search on forecast desktop",
+        "theme toggle"
+      ],
+      "footer": "thin top rule, wordmark, and utility links"
+    },
+    "landing": [
+      "question and search split across two columns on desktop",
+      "explicit current-location action",
+      "full-width illustrative panorama",
+      "crawlable method and popular-location content",
+      "single-column reading order on mobile"
+    ],
+    "forecast": [
+      "place/date and plain-language forecast beside score/verdict",
+      "full-width panorama",
+      "golden-hour interval, ruler, and sunset strip",
+      "seven-day outlook beside explanation on desktop",
+      "native photography-details disclosure",
+      "SEO forecast summary and table after the interactive dashboard when present"
+    ],
+    "panorama": {
+      "objectFit": "cover",
+      "objectPosition": "center 56%",
+      "landingHeight": "clamp(240px, 27vw, 380px); 240px on mobile; 180px on short screens",
+      "forecastHeight": "clamp(230px, 21.2vw, 326px); 200px on mobile; 170px on short screens",
+      "frame": "white 22px by 1px corner marks inset 20px desktop and 14px mobile",
+      "caption": "Illustrative sky, not a live view or a prediction."
+    }
+  },
+  "interactions": {
+    "search": {
+      "submit": "Find resolves a chosen suggestion or forward-geocodes text, then navigates to its canonical place path.",
+      "suggestions": "Begin after two typed characters, show up to six Photon results, and support ArrowUp, ArrowDown, Enter, Escape, click, and outside-click dismissal.",
+      "loading": "Find becomes Reading; find and location controls are disabled; live status announces progress or errors.",
+      "approximateLocation": "IP-derived place can prefill without a permission prompt when the user has not edited the field.",
+      "preciseLocation": "Browser geolocation is requested only after explicit activation, reverse-geocoded, then searched.",
+      "mobile": "Forecast header search is presented as a full-screen fixed sheet at supported small widths."
+    },
+    "daySelection": "Updates score, message, times, ruler, explanation, and metrics together; uses aria-pressed; restores focus to the selected day.",
+    "photographyDetails": "Native details/summary disclosure; plus icon rotates 45 degrees when open.",
+    "motion": {
+      "durationMs": 160,
+      "uses": [
+        "day hover/selection background",
+        "theme control background/color/border"
+      ],
+      "scrollBehavior": "smooth unless reduced motion is requested"
+    }
+  },
+  "accessibility": {
+    "semantics": [
+      "skip link to main forecast",
+      "semantic sections and heading labels",
+      "native forms, buttons, details, and summary",
+      "screen-reader-only input labels",
+      "polite live status regions",
+      "decorative icons hidden with aria-hidden"
+    ],
+    "focus": "3px solid focus token with 4px offset; search shell also marks focus-within",
+    "targets": "Primary interactive controls are at least 44px; theme toggle is 48px square.",
+    "selectedState": "Active day uses aria-pressed, fill, and typography in addition to color.",
+    "imageAlternative": "Panorama alt text describes amber evening clouds over an ocean horizon; the caption disclaims live or predictive meaning.",
+    "reducedMotion": "prefers-reduced-motion disables animation, transitions, and smooth scrolling",
+    "contrastRatios": {
+      "lightForegroundOnBackground": 12.87,
+      "lightMutedOnBackground": 5.15,
+      "lightPrimaryForegroundOnPrimary": 4.75,
+      "lightFocusOnBackground": 5.93,
+      "darkForegroundOnBackground": 13.79,
+      "darkMutedOnBackground": 8.57,
+      "darkPrimaryOnPrimaryForeground": 7.13,
+      "darkFocusOnBackground": 8.96,
+      "lightSecondaryForegroundOnSecondary": 9.37,
+      "darkSecondaryForegroundOnSecondary": 7.66
+    }
+  },
+  "assets": [
+    {
+      "path": "assets/evening-sky.webp",
+      "kind": "panoramic raster",
+      "dimensionsPx": [
+        2172,
+        724
+      ],
+      "provenance": "Project-generated sunset panorama derived from the approved Light Finder direction.",
+      "metadata": "assets/evening-sky.webp.json",
+      "createdAt": "2026-09-17T16:30:50.403Z",
+      "usageConstraint": "Always label as illustrative, not live or predictive."
+    },
+    {
+      "path": "assets/manrope-regular.ttf",
+      "kind": "font",
+      "provenance": "The Manrope Project Authors",
+      "license": "SIL Open Font License 1.1",
+      "licenseFile": "assets/Manrope-OFL.txt"
+    },
+    {
+      "path": "assets/manrope-semibold.ttf",
+      "kind": "font",
+      "provenance": "The Manrope Project Authors",
+      "license": "SIL Open Font License 1.1",
+      "licenseFile": "assets/Manrope-OFL.txt"
+    },
+    {
+      "path": "assets/icons.svg",
+      "kind": "SVG symbol sprite",
+      "symbols": [
+        "search",
+        "locate",
+        "close",
+        "plus"
+      ],
+      "provenance": "Tabler Icons by Paweł Kuna",
+      "license": "MIT",
+      "licenseFile": "assets/Tabler-LICENSE.txt"
+    },
+    {
+      "path": "index.html",
+      "kind": "inline theme icons",
+      "symbols": [
+        "sun",
+        "moon"
+      ],
+      "provenance": "Project-authored inline SVG markup"
+    },
+    {
+      "path": "style.css",
+      "kind": "viewfinder marks",
+      "provenance": "Project-authored CSS linear-gradient geometry"
+    }
+  ],
+  "reviewEvidence": [
+    {
+      "path": ".impeccable/review/landing-desktop.png",
+      "dimensionsPx": [
+        1440,
+        1530
+      ]
+    },
+    {
+      "path": ".impeccable/review/landing-mobile.png",
+      "dimensionsPx": [
+        390,
+        1605
+      ]
+    },
+    {
+      "path": ".impeccable/review/desktop.png",
+      "dimensionsPx": [
+        1440,
+        2373
+      ]
+    },
+    {
+      "path": ".impeccable/review/tablet.png",
+      "dimensionsPx": [
+        768,
+        2436
+      ]
+    },
+    {
+      "path": ".impeccable/review/mobile.png",
+      "dimensionsPx": [
+        390,
+        2699
+      ]
+    },
+    {
+      "path": ".impeccable/review/hero-repro.png",
+      "dimensionsPx": [
+        1536,
+        1024
+      ]
+    }
+  ]
+}
