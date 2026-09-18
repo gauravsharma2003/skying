@@ -17,6 +17,7 @@
 :root[data-theme="dark"]{color-scheme:dark;--bg:#17232b;--fg:#e9eff2;--card:#202f39;--primary:#e5a078;--primary-fg:#1c252c;--secondary:#5a4034;--secondary-fg:#ffe2cb;--muted:#b0c0ca;--line:#425561;--hover:#2c3f4a;--focus:#efb68f;--shadow:none}
 .home-about h2 br{display:block}
 .find-btn{min-width:88px}
+.center-search .locate-btn{display:grid}
 .why-text{min-height:74px}
 @media(max-width:767px){.forecast-hero{min-height:215px}.why-text{min-height:70px}.days{padding-top:8px}}
 @media(max-width:639px){.day-btn{flex-basis:calc((100% - 10px)/3)}}
