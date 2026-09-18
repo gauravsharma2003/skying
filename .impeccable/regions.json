@@ -1,0 +1,165 @@
+{
+  "regions": [
+    {
+      "id": "brand",
+      "kind": "text",
+      "note": "Existing Skying wordmark",
+      "snap": true,
+      "grid": "A0:B0",
+      "codeDrawn": true
+    },
+    {
+      "id": "brand-label",
+      "kind": "text",
+      "note": "Sunset forecast label",
+      "snap": true,
+      "grid": "B0:C0",
+      "codeDrawn": true
+    },
+    {
+      "id": "search",
+      "kind": "control",
+      "note": "Location search and Find button",
+      "snap": false,
+      "grid": "H0:J0",
+      "codeDrawn": true
+    },
+    {
+      "id": "date",
+      "kind": "text",
+      "note": "Selected date and location",
+      "snap": true,
+      "grid": "A1:E1",
+      "codeDrawn": true
+    },
+    {
+      "id": "headline",
+      "kind": "text",
+      "note": "An evening worth going out for.",
+      "snap": true,
+      "grid": "A1:H1",
+      "codeDrawn": true
+    },
+    {
+      "id": "score",
+      "kind": "text",
+      "note": "Quality score out of 100",
+      "snap": true,
+      "grid": "I1:J2",
+      "codeDrawn": true
+    },
+    {
+      "id": "verdict",
+      "kind": "text",
+      "note": "Verbal forecast verdict",
+      "snap": true,
+      "grid": "I2:J2",
+      "codeDrawn": true
+    },
+    {
+      "id": "sky",
+      "kind": "plate",
+      "note": "Panoramic ocean sunset photograph with a coastline left and small sun right; no text or interface marks",
+      "snap": false,
+      "plate": "assets/evening-sky.png",
+      "bleed": true,
+      "grid": "A2:J5"
+    },
+    {
+      "id": "caption",
+      "kind": "text",
+      "note": "Illustrative image caption",
+      "snap": true,
+      "grid": "A5:E5",
+      "codeDrawn": true
+    },
+    {
+      "id": "window",
+      "kind": "text",
+      "note": "Best viewing window and time",
+      "snap": true,
+      "grid": "A6:C6",
+      "codeDrawn": true
+    },
+    {
+      "id": "ruler",
+      "kind": "chrome",
+      "note": "Data-driven evening time ruler",
+      "snap": false,
+      "grid": "C6:H6",
+      "codeDrawn": true
+    },
+    {
+      "id": "sunset",
+      "kind": "text",
+      "note": "Sunset time",
+      "snap": true,
+      "grid": "I6:J6",
+      "codeDrawn": true
+    },
+    {
+      "id": "outlook-heading",
+      "kind": "text",
+      "note": "Seven-day outlook heading",
+      "snap": true,
+      "grid": "A7:D7",
+      "codeDrawn": true
+    },
+    {
+      "id": "days",
+      "kind": "control",
+      "note": "Seven daily forecast selection buttons",
+      "snap": false,
+      "grid": "A7:G8",
+      "codeDrawn": true
+    },
+    {
+      "id": "reason-heading",
+      "kind": "text",
+      "note": "Why it looks promising heading",
+      "snap": true,
+      "grid": "G7:J7",
+      "codeDrawn": true
+    },
+    {
+      "id": "reason",
+      "kind": "text",
+      "note": "Forecast explanation",
+      "snap": true,
+      "grid": "G7:J7",
+      "codeDrawn": true
+    },
+    {
+      "id": "horizon",
+      "kind": "text",
+      "note": "Horizon clarity metric",
+      "snap": true,
+      "grid": "G8:I8",
+      "codeDrawn": true
+    },
+    {
+      "id": "visibility",
+      "kind": "text",
+      "note": "Visibility metric",
+      "snap": true,
+      "grid": "I8:J8",
+      "codeDrawn": true
+    },
+    {
+      "id": "details",
+      "kind": "control",
+      "note": "Photography details disclosure",
+      "snap": false,
+      "grid": "A9:C9",
+      "codeDrawn": true
+    },
+    {
+      "id": "disclaimer",
+      "kind": "text",
+      "note": "Forecast uncertainty and local time notice",
+      "snap": true,
+      "grid": "H9:J9",
+      "codeDrawn": true
+    }
+  ]
+}

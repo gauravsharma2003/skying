@@ -1,2 +1,11 @@
+node_modules/
+dist/
+.wrangler/
+.dev.vars
+.env*
+reports/
+.impeccable/build/
+.impeccable/review/
+assets/evening-sky.png
 .DS_Store
 Thumbs.db

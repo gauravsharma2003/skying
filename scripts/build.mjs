@@ -1,0 +1,27 @@
+import {mkdir,readFile,writeFile,cp,rm} from 'node:fs/promises';
+import {createHash} from 'node:crypto';
+import {build} from 'esbuild';
+import sharp from 'sharp';
+import {LOCATIONS,BASE_URL} from '../src/locations.js';
+import {PAGES} from '../src/content.js';
+import {escapeHtml as e,safeJson} from '../src/render.js';
+await mkdir('dist/assets',{recursive:true});
+const result=await build({entryPoints:['src/app.js'],bundle:true,minify:true,format:'esm',target:['es2020'],outdir:'dist/assets',entryNames:'[name]-[hash]',metafile:true});
+const app='/'+Object.keys(result.metafile.outputs).find(x=>x.endsWith('.js')).replace(/^dist\/assets\//,'assets/');
+const css=await readFile('style.css');const style=`/assets/style-${createHash('sha256').update(css).digest('hex').slice(0,10)}.css`;await writeFile('dist'+style,css);
+let html=(await readFile('index.html','utf8')).replace('/style.css',style).replace('/app.js',app).replace('<!-- POPULAR_CITIES -->',LOCATIONS.filter(p=>['new-delhi-india','mumbai-india','bengaluru-india','london-united-kingdom','new-york-united-states','sydney-australia'].includes(p.slug)).map(p=>`<a href="/sunset-forecast/${p.slug}">${e(p.name)}</a>`).join(''));
+await writeFile('dist/index.html',html);
+for(const f of ['icons.svg','evening-sky.webp','evening-sky.webp.json','manrope-regular.ttf','manrope-semibold.ttf','Manrope-OFL.txt','Tabler-LICENSE.txt']) await cp('assets/'+f,'dist/assets/'+f);
+for(const f of ['favicon.svg','site.webmanifest','robots.txt','google640188ec36492a10.html']) await cp(f,'dist/'+f);
+await sharp(await readFile('og-image.svg')).png().toFile('dist/og-image.png');
+await writeFile('dist/third-party-notices.txt', 'SunCalc 1.9.0\n\n'+await readFile('node_modules/suncalc/LICENSE','utf8'));
+const footer=`<footer class="site-footer"><a href="/">Skying</a><a href="/sunset-forecast/">Locations</a><a href="/how-it-works/">Method &amp; data</a><a href="/about/">About</a><a href="/privacy/">Privacy</a></footer>`;
+function document(page,structured) {return `<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>${e(page.title)} | Skying</title><meta name="description" content="${e(page.description)}"><meta name="robots" content="index,follow,max-image-preview:large"><link rel="canonical" href="${BASE_URL+page.path}"><link rel="icon" href="/favicon.svg" type="image/svg+xml"><link rel="stylesheet" href="${style}"><meta property="og:type" content="website"><meta property="og:site_name" content="Skying"><meta property="og:title" content="${e(page.title)} | Skying"><meta property="og:description" content="${e(page.description)}"><meta property="og:url" content="${BASE_URL+page.path}"><meta property="og:image" content="${BASE_URL}/og-image.png"><meta property="og:image:width" content="1200"><meta property="og:image:height" content="630"><meta name="twitter:card" content="summary_large_image"><meta name="twitter:title" content="${e(page.title)} | Skying"><meta name="twitter:description" content="${e(page.description)}"><meta name="twitter:image" content="${BASE_URL}/og-image.png"><script type="application/ld+json">${safeJson(structured || {'@context':'https://schema.org','@type':'WebPage',name:page.title,url:BASE_URL+page.path,description:page.description})}</script></head><body><main class="content-section"><a class="brand" href="/">Skying</a><h1>${e(page.title)}</h1>${page.body}<nav class="guide-nav" aria-label="Explore Skying"><a href="/sunset-forecast/">Find your sunset forecast</a> · <a href="/how-it-works/">Read the method</a></nav></main>${footer}</body></html>`;}
+const directory={path:'/sunset-forecast/',title:'Sunset Forecasts by Location',description:'Browse sunset-quality forecasts, local sunset times and seven-day golden-hour outlooks for 43 cities.',body:`<p>Choose a city for its local sunset time, weather-based quality score, golden hour and blue hour. All times use the location’s timezone.</p>`+[...new Set(LOCATIONS.map(p=>p.group))].map(group=>`<section><h2>${e(group)}</h2><div class="directory-grid">${LOCATIONS.filter(p=>p.group===group).map(p=>`<a href="/sunset-forecast/${p.slug}">${e(p.name)}</a>`).join('')}</div></section>`).join('')};
+for(const page of [directory,...PAGES]) {await mkdir('dist'+page.path,{recursive:true});await writeFile('dist'+page.path+'index.html',document(page,page===directory ? {'@context':'https://schema.org','@type':'ItemList',name:page.title,itemListElement:LOCATIONS.map((p,i)=>({'@type':'ListItem',position:i+1,name:p.name,url:BASE_URL+'/sunset-forecast/'+p.slug}))} : null));}
+const paths=['/','/sunset-forecast/',...LOCATIONS.map(p=>'/sunset-forecast/'+p.slug),...PAGES.map(p=>p.path)];
+const sitemap=`<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n${paths.map(path=>`  <url><loc>${BASE_URL+path}</loc></url>`).join('\n')}\n</urlset>\n`;
+await writeFile('dist/sitemap.xml',sitemap);await writeFile('sitemap.xml',sitemap);
+await writeFile('dist/_headers','/assets/*\n  Cache-Control: public, max-age=31536000, immutable\n/*\n  X-Content-Type-Options: nosniff\n  Referrer-Policy: strict-origin-when-cross-origin\n');
+await writeFile('dist/404.html',document({path:'/404/',title:'Page Not Found',description:'This page could not be found.',body:'<p>Try the location directory to find your forecast.</p>'}).replace('index,follow,max-image-preview:large','noindex,follow'));
+console.log(`Built ${paths.length} indexable URLs; browser bundle ${app}; stylesheet ${style}.`);

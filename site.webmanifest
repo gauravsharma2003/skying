@@ -4,8 +4,8 @@
   "description": "Sunset quality and golden-hour forecasts.",
   "start_url": "/",
   "display": "standalone",
-  "background_color": "#f4f0e9",
-  "theme_color": "#f4f0e9",
+  "background_color": "#e9edf0",
+  "theme_color": "#e9edf0",
   "icons": [
     {
       "src": "/favicon.svg",

@@ -1,0 +1,194 @@
+{
+  "title": "A new view of Skying",
+  "question": "The Light Finder brings the sunset decision into focus. Choose this direction, request a different approach, or use the familiar weather-app layout.",
+  "options": [
+    {
+      "id": "assigned",
+      "label": "The Light Finder",
+      "kicker": "THE ROLL",
+      "lineage": "Precision camera viewfinders and outdoor light meters",
+      "thesis": "See whether to head out, through one panoramic window onto the evening.",
+      "palette": [
+        "#e9edf0",
+        "#202d35",
+        "#c86432",
+        "#f8fafb"
+      ],
+      "materials": [
+        "matte silver",
+        "panoramic sky",
+        "crisp measurement marks"
+      ],
+      "viewport": "A wide sky window, prominent sunset verdict, viewing time, and a continuous seven-day strip.",
+      "risk": "Instrument details must stay quiet enough for everyday visitors.",
+      "comp": ".impeccable/mocks/decision/light-finder.png",
+      "raised": [
+        {
+          "from": "Developer console",
+          "raise": "Conditions collapse by task priority at each breakpoint."
+        },
+        {
+          "from": "Information sleeve",
+          "raise": "The verdict owns a decisive typographic scale."
+        },
+        {
+          "from": "Cracktro queue",
+          "raise": "Secondary data recedes while the next action remains still."
+        },
+        {
+          "from": "Phosphor terminal",
+          "raise": "Every search and loading state gives explicit feedback."
+        },
+        {
+          "from": "Industrial labels",
+          "raise": "Selected days use unmistakable, consistent contrast."
+        },
+        {
+          "from": "Cloud quarry",
+          "raise": "The sky stays the visual subject rather than generic dashboard chrome."
+        }
+      ]
+    },
+    {
+      "id": "tdr-info-noise-sleeve",
+      "label": "Information sleeve",
+      "verdict": "declined",
+      "thesis": "Alternative visual system considered for sunset planning.",
+      "palette": [
+        "#df2468",
+        "#151619",
+        "#f4f5f6"
+      ],
+      "materials": [
+        "system-specific surfaces"
+      ],
+      "viewport": "Dense printed warning labels make scores and weather harder to read.",
+      "risk": "Dense printed warning labels make scores and weather harder to read.",
+      "case": "Dense printed warning labels make scores and weather harder to read.",
+      "kept": "Decisive typographic hierarchy.",
+      "hero": "https://impeccable.style/worlds/cards/tdr-info-noise-sleeve-hero.webp"
+    },
+    {
+      "id": "digital-design-canon-dark-first-developer-console",
+      "label": "Developer console",
+      "verdict": "declined",
+      "thesis": "Alternative visual system considered for sunset planning.",
+      "palette": [
+        "#20252a",
+        "#384048",
+        "#c8cfd5"
+      ],
+      "materials": [
+        "system-specific surfaces"
+      ],
+      "viewport": "Persistent technical panels obscure the simple go-outside decision.",
+      "risk": "Persistent technical panels obscure the simple go-outside decision.",
+      "case": "Persistent technical panels obscure the simple go-outside decision.",
+      "kept": "Priority-based panel collapse.",
+      "hero": "https://impeccable.style/worlds/cards/digital-design-canon-dark-first-developer-console-hero.webp"
+    },
+    {
+      "id": "operate-c-cracktro-scroller-queue",
+      "label": "Layered bitmap queue",
+      "verdict": "declined",
+      "thesis": "Alternative visual system considered for sunset planning.",
+      "palette": [
+        "#171a1c",
+        "#a7aaa9",
+        "#dcb564"
+      ],
+      "materials": [
+        "system-specific surfaces"
+      ],
+      "viewport": "Depth and drifting bitmap labels are less legible outdoors.",
+      "risk": "Depth and drifting bitmap labels are less legible outdoors.",
+      "case": "Depth and drifting bitmap labels are less legible outdoors.",
+      "kept": "Clear foreground and background information.",
+      "hero": "https://impeccable.style/worlds/cards/operate-c-cracktro-scroller-queue-hero.webp"
+    },
+    {
+      "id": "signals-instruments-phosphor-terminal-midnight",
+      "label": "Phosphor transcript",
+      "verdict": "declined",
+      "thesis": "Alternative visual system considered for sunset planning.",
+      "palette": [
+        "#14221b",
+        "#81bb93",
+        "#233b2b"
+      ],
+      "materials": [
+        "system-specific surfaces"
+      ],
+      "viewport": "A command transcript makes comparing seven days unnecessarily difficult.",
+      "risk": "A command transcript makes comparing seven days unnecessarily difficult.",
+      "case": "A command transcript makes comparing seven days unnecessarily difficult.",
+      "kept": "Explicit system feedback.",
+      "hero": "https://impeccable.style/worlds/cards/signals-instruments-phosphor-terminal-midnight-hero.webp"
+    },
+    {
+      "id": "textiles-weave-drape-fashion-industrial-quote-grammar",
+      "label": "Industrial labels",
+      "verdict": "declined",
+      "thesis": "Alternative visual system considered for sunset planning.",
+      "palette": [
+        "#f1f2f0",
+        "#202423",
+        "#df7933"
+      ],
+      "materials": [
+        "system-specific surfaces"
+      ],
+      "viewport": "Quotation labels and hazard stripes imply warnings rather than a pleasant evening.",
+      "risk": "Quotation labels and hazard stripes imply warnings rather than a pleasant evening.",
+      "case": "Quotation labels and hazard stripes imply warnings rather than a pleasant evening.",
+      "kept": "Unambiguous selected states.",
+      "hero": "https://impeccable.style/worlds/cards/textiles-weave-drape-fashion-industrial-quote-grammar-hero.webp"
+    },
+    {
+      "id": "dream-surreal-impossible-worlds-cloud-quarry",
+      "label": "Cloud quarry",
+      "verdict": "declined",
+      "thesis": "Alternative visual system considered for sunset planning.",
+      "palette": [
+        "#e9edf0",
+        "#849aad",
+        "#303d4a"
+      ],
+      "materials": [
+        "system-specific surfaces"
+      ],
+      "viewport": "Constructing cloud blocks suggests weather controls the product does not offer.",
+      "risk": "Constructing cloud blocks suggests weather controls the product does not offer.",
+      "case": "Constructing cloud blocks suggests weather controls the product does not offer.",
+      "kept": "Subject-led imagery.",
+      "hero": "https://impeccable.style/worlds/cards/dream-surreal-impossible-worlds-cloud-quarry-hero.webp"
+    }
+  ],
+  "reroll": {
+    "registers": [
+      "safer",
+      "bolder"
+    ]
+  },
+  "buildPath": {
+    "value": "comp",
+    "toggle": true
+  },
+  "canon": true,
+  "canonCard": {
+    "label": "Familiar weather app",
+    "thesis": "A conventional weather dashboard with polished cards.",
+    "palette": [
+      "#eff3f7",
+      "#263945",
+      "#be622f"
+    ],
+    "materials": [
+      "flat cards",
+      "simple weather imagery"
+    ],
+    "viewport": "Location header, score card, weather tiles, and a weekly forecast.",
+    "risk": "Clear and familiar, but less distinctive."
+  },
+  "steer": true
+}
