@@ -1,4 +1,4 @@
-import {evaluate} from './scoring.js';
+import {evaluate,skyBackground} from './scoring.js';
 import {placePath,LOCATIONS,slugify} from './locations.js';
 import {solarClock,solarTimes,solarWindow} from './solar.js';
     (() => {
@@ -39,6 +39,7 @@ import {solarClock,solarTimes,solarWindow} from './solar.js';
         empty: document.getElementById('emptyState'),
         status: document.getElementById('status'),
         hero: document.getElementById('forecastHero'),
+        backdropImage: document.getElementById('forecastBackdropImage'),
         dashboard: document.getElementById('dashboard'),
         topline: document.getElementById('forecastTopline'),
         message: document.getElementById('forecastMessage'),
@@ -385,6 +386,11 @@ import {solarClock,solarTimes,solarWindow} from './solar.js';
         el.score.textContent = current ? String(current.score) : '—';
         el.verdict.textContent = current?.verdict || 'Unavailable';
         el.message.textContent = current ? messageFor(current.score) : 'The evening forecast is unavailable.';
+        const backdrop = skyBackground(current);
+        if (el.backdropImage) {
+          el.backdropImage.src = backdrop.src;
+          el.backdropImage.dataset.situation = backdrop.situation;
+        }
         el.sunset.textContent = fmtTime(sunset);
         el.whyText.textContent = current ? current.reasons.join(' ') : 'No complete sunset-quality forecast is available for this date.';
         const light=solarTimes(data.daily.time[state.selected],state.place,data.timezone);

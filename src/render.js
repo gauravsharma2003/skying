@@ -1,6 +1,6 @@
 import {LOCAL_GUIDES} from './local-guides.js';
 import {BASE_URL, LOCATIONS} from './locations.js';
-import {evaluate} from './scoring.js';
+import {evaluate,skyBackground} from './scoring.js';
 import {solarClock,solarTimes,solarWindow} from './solar.js';
 export const escapeHtml = value => String(value).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
 export const safeJson = value => JSON.stringify(value).replace(/</g,'\\u003c').replace(/\u2028/g,'\\u2028').replace(/\u2029/g,'\\u2029');
@@ -70,6 +70,8 @@ export function renderDashboard(html,page) {
   html=html.replace('id="emptyState" class="empty-stage"','id="emptyState" class="empty-stage hidden"').replace('id="siteHeader" class="compact-empty"','id="siteHeader"').replace('class="search-wrap header-search hidden"','class="search-wrap header-search"').replace('class="forecast-hero hidden"','class="forecast-hero"').replace('class="dashboard hidden"','class="dashboard"');
   const fields={cityHeading:`${place.name} sunset forecast`,forecastTopline:`Today · ${label(place)} · ${page.data.timezone}`,forecastMessage:q ? messageFor(q.score) : 'The evening forecast is unavailable.',scoreNumber:q?.score ?? '—',verdict:q?.verdict || 'Unavailable',sunsetTime:clock(first.sunset),whyText:q ? q.reasons.join(' ') : 'No complete sunset-quality forecast is available for this date.',bestWindow:solarWindow(first.goldenStart,first.goldenEnd,page.data.timezone,first.date),horizonClarity:q ? `${Math.round(q.horizonScore)}% · ${q.horizonScore>=80 ? 'excellent' : 'mixed'}` : 'Unavailable',visibilityValue:q ? `${q.vis.toFixed(0)} km` : 'Unavailable',goldenDetail:solarWindow(first.goldenStart,first.goldenEnd,page.data.timezone,first.date),blueDetail:solarWindow(first.blueStart,first.blueEnd,page.data.timezone,first.date),localTimeNote:`Forecasts are estimates. All times are local to ${page.data.timezone}.`,mobileLocationLabel:place.name};
   for(const [id,value] of Object.entries(fields)) html=html.replace(new RegExp(`(<(?:h1|p|div|span)[^>]*id="${id}"[^>]*>)[^<]*`),(_,open)=>open+e(value));
+  const backdrop=skyBackground(q);
+  html=html.replace('id="forecastBackdropImage" src="/assets/evening-sky.webp"',`id="forecastBackdropImage" src="${backdrop.src}" data-situation="${backdrop.situation}"`);
   html=html.replace('<div id="eveningRuler" class="evening-ruler"></div>',`<div id="eveningRuler" class="evening-ruler">${eveningRuler(first,page.data.timezone)}</div>`);
   html=html.replace('id="placeHeader" data-search-input',`id="placeHeader" value="${e(label(place))}" data-search-input`);
   html=html.replace('<div id="days" class="days"></div>',`<div id="days" class="days">${page.forecasts.map((f,i)=>`<button type="button" class="day-btn${i===0?' selected':''}" aria-pressed="${i===0}"><span class="day-name">${i===0?'Today':e(new Intl.DateTimeFormat('en-GB',{timeZone:'UTC',weekday:'short',month:'short',day:'numeric'}).format(new Date(f.date+'T12:00:00Z')).split(',')[0])}</span><span class="day-score">${f.quality?.score ?? '—'}</span><span class="day-note">${e(f.quality?.verdict || 'Unavailable')}</span><span class="day-time">${e(clock(f.sunset))}</span></button>`).join('')}</div>`);

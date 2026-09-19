@@ -1,5 +1,13 @@
 const clamp = (n, min = 0, max = 100) => Math.max(min, Math.min(max, n));
 
+export function skyBackground(quality) {
+  if (!quality) return {src:'/assets/evening-sky.webp', situation:'neutral'};
+  if (quality.precip >= 35 || quality.low >= 65 || quality.total >= 85) return {src:'/assets/sky-overcast-v1.webp', situation:'overcast'};
+  if (quality.score >= 63 || (quality.high >= 20 && quality.high <= 80 && quality.low < 55)) return {src:'/assets/sky-vivid-v1.webp', situation:'vivid'};
+  if (quality.total <= 22 || quality.high < 18) return {src:'/assets/sky-clear-v1.webp', situation:'clear'};
+  return {src:'/assets/evening-sky.webp', situation:'neutral'};
+}
+
 function scoreCloud(x) {
   if (x <= 15) return 20 + (x / 15) * 35;
   if (x < 30) return 55 + ((x - 15) / 15) * 35;

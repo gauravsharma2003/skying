@@ -11,7 +11,7 @@ const app='/'+Object.keys(result.metafile.outputs).find(x=>x.endsWith('.js')).re
 const css=await readFile('style.css');const style=`/assets/style-${createHash('sha256').update(css).digest('hex').slice(0,10)}.css`;await writeFile('dist'+style,css);
 let html=(await readFile('index.html','utf8')).replace('/style.css',style).replace('/app.js',app).replace('<!-- POPULAR_CITIES -->',LOCATIONS.filter(p=>['new-delhi-india','mumbai-india','bengaluru-india','london-united-kingdom','new-york-united-states','sydney-australia'].includes(p.slug)).map(p=>`<a href="/sunset-forecast/${p.slug}">${e(p.name)}</a>`).join(''));
 await writeFile('dist/index.html',html);
-for(const f of ['icons.svg','evening-sky.webp','evening-sky.webp.json','manrope-regular.ttf','manrope-semibold.ttf','Manrope-OFL.txt','Tabler-LICENSE.txt']) await cp('assets/'+f,'dist/assets/'+f);
+for(const f of ['icons.svg','evening-sky.webp','evening-sky.webp.json','sky-clear-v1.webp','sky-vivid-v1.webp','sky-overcast-v1.webp','manrope-regular.ttf','manrope-semibold.ttf','Manrope-OFL.txt','Tabler-LICENSE.txt']) await cp('assets/'+f,'dist/assets/'+f);
 for(const f of ['favicon.svg','site.webmanifest','robots.txt','google640188ec36492a10.html']) await cp(f,'dist/'+f);
 await sharp(await readFile('og-image.svg')).png().toFile('dist/og-image.png');
 await writeFile('dist/third-party-notices.txt', 'SunCalc 1.9.0\n\n'+await readFile('node_modules/suncalc/LICENSE','utf8'));

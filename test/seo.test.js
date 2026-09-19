@@ -2,7 +2,7 @@ import test from 'node:test';
 import assert from 'node:assert/strict';
 import {readFile} from 'node:fs/promises';
 import {LOCATIONS,BASE_URL,placePath} from '../src/locations.js';
-import {evaluate} from '../src/scoring.js';
+import {evaluate,skyBackground} from '../src/scoring.js';
 import {localDate,solarTimes} from '../src/solar.js';
 import {weatherFor} from '../src/weather.js';
 import {fixture,memoryCache} from './fixtures.js';
@@ -43,6 +43,12 @@ test('custom coordinates stay distinct and non-indexable; labels cannot inject H
 test('missing observations never become a plausible score',()=>{
  const data=fixture();assert.ok(evaluate(data.hourly,data.daily.sunset[0]).score>=0);assert.equal(evaluate(data.hourly,''),null);
  data.hourly.visibility.fill(null);assert.equal(evaluate(data.hourly,data.daily.sunset[0]),null);
+});
+test('forecast conditions select distinct sky backgrounds',()=>{
+ assert.equal(skyBackground({precip:50,low:20,total:40,score:70,high:40}).situation,'overcast');
+ assert.equal(skyBackground({precip:0,low:10,total:45,score:72,high:45}).situation,'vivid');
+ assert.equal(skyBackground({precip:0,low:0,total:8,score:52,high:5}).situation,'clear');
+ assert.equal(skyBackground(null).situation,'neutral');
 });
 test('weather cache uses fresh data, falls back after failure, expires and rejects yesterday',async()=>{
  const cache=memoryCache(),place=LOCATIONS[0],now=Date.parse('2026-09-17T08:00:00Z');let requests=0;
