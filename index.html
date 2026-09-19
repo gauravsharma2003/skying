@@ -121,6 +121,10 @@
       </section>
       <!-- HOME_CONTENT_END -->
       <section id="forecastHero" class="forecast-hero hidden" aria-label="Sunset forecast overview">
+        <figure class="forecast-backdrop">
+          <img src="/assets/evening-sky.webp" width="2172" height="724" alt="" fetchpriority="high" />
+          <figcaption>Illustrative sky · not a live view</figcaption>
+        </figure>
         <div class="forecast-intro">
           <h1 id="cityHeading" class="city-heading"></h1>
           <p id="forecastTopline" class="forecast-topline"></p>
@@ -133,10 +137,6 @@
       </section>
 
       <div id="dashboard" class="dashboard hidden">
-        <figure class="photo-card">
-          <div class="viewfinder"><img src="/assets/evening-sky.webp" width="2172" height="724" alt="Amber clouds over a calm ocean and distant coastline at sunset" fetchpriority="high" /><span class="frame-corners" aria-hidden="true"></span></div>
-          <figcaption class="photo-caption">Illustrative sky, not a live view or a prediction.</figcaption>
-        </figure>
         <section class="evening-window" aria-label="Evening light times">
           <div class="window-label"><span class="metric-label">Golden-hour window</span><div id="bestWindow" class="window-value"></div></div>
           <div id="eveningRuler" class="evening-ruler"></div>
