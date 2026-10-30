@@ -59,6 +59,7 @@
 
         <div id="headerSearch" class="search-wrap header-search hidden">
           <button id="mobileSearchClose" type="button" class="mobile-search-close" aria-label="Close location search"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="m18 6-12 12M6 6l12 12" /></svg></button>
+          <h2 class="mobile-search-title">Choose a place</h2>
           <form class="search-shell" data-search-form autocomplete="off">
             <svg class="icon pin" aria-hidden="true"><use href="/assets/icons.svg#search" /></svg>
             <label for="placeHeader" class="sr-only">Search location</label>
@@ -121,9 +122,6 @@
       </section>
       <!-- HOME_CONTENT_END -->
       <section id="forecastHero" class="forecast-hero hidden" aria-label="Sunset forecast overview">
-        <figure class="forecast-backdrop">
-          <img id="forecastBackdropImage" src="/assets/evening-sky.webp" width="2048" height="768" alt="" fetchpriority="high" />
-        </figure>
         <div class="forecast-intro">
           <h1 id="cityHeading" class="city-heading"></h1>
           <p id="forecastTopline" class="forecast-topline"></p>
@@ -138,8 +136,15 @@
       <div id="dashboard" class="dashboard hidden">
         <section class="evening-window" aria-label="Evening light times">
           <div class="window-label"><span class="metric-label">Golden-hour window</span><div id="bestWindow" class="window-value"></div></div>
-          <div id="eveningRuler" class="evening-ruler"></div>
           <div class="sunset-block"><span class="metric-label">Sunset</span><div id="sunsetTime" class="sunset-time">Unavailable</div></div>
+        </section>
+        <figure class="photo-card">
+          <div class="viewfinder"><img id="forecastBackdropImage" src="/assets/evening-sky.webp" width="2048" height="768" alt="" fetchpriority="high" /><span class="frame-corners" aria-hidden="true"></span></div>
+          <figcaption>Illustrative sky, not a live view or a prediction.</figcaption>
+        </figure>
+        <section class="timeline" aria-labelledby="timelineTitle">
+          <h2 id="timelineTitle" class="section-title">Evening light</h2>
+          <div id="eveningRuler" class="evening-ruler"></div>
         </section>
         <section class="outlook" aria-labelledby="outlookTitle">
           <h2 id="outlookTitle" class="section-title">Seven-day outlook</h2>
