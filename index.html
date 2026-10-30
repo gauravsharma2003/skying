@@ -67,6 +67,7 @@
             <button type="button" class="locate-btn" data-locate title="Use precise device location" aria-label="Use precise device location"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M9 12a3 3 0 1 0 6 0a3 3 0 1 0-6 0"/><path d="M4 12a8 8 0 1 0 16 0A8 8 0 1 0 4 12"/><path d="M12 2v2M12 20v2M20 12h2M2 12h2"/></svg></button>
             <button type="submit" class="find-btn" data-find>Find</button>
           </form>
+          <button type="button" class="mobile-locate" data-locate><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M21 3 9 15m12-12-7 18-5-6-6-5Z"/></svg>Use current location</button>
           <div class="suggestions" data-suggestions role="listbox"></div>
           <p class="search-status" aria-live="polite"></p>
           <nav class="mobile-popular-search" aria-labelledby="mobilePopularTitle">
@@ -131,6 +132,7 @@
           <div class="score-value"><span id="scoreNumber" class="score-number">0</span><span class="of100">/100</span></div>
           <p id="verdict" class="verdict">Unavailable</p>
         </div>
+        <p id="forecastSummary" class="forecast-summary"></p>
       </section>
 
       <div id="dashboard" class="dashboard hidden">

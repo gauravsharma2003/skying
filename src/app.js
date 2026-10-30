@@ -43,6 +43,7 @@ import {solarClock,solarTimes,solarWindow} from './solar.js';
         dashboard: document.getElementById('dashboard'),
         topline: document.getElementById('forecastTopline'),
         message: document.getElementById('forecastMessage'),
+        summary: document.getElementById('forecastSummary'),
         score: document.getElementById('scoreNumber'),
         verdict: document.getElementById('verdict'),
         sunset: document.getElementById('sunsetTime'),
@@ -386,6 +387,7 @@ import {solarClock,solarTimes,solarWindow} from './solar.js';
         el.score.textContent = current ? String(current.score) : '—';
         el.verdict.textContent = current?.verdict || 'Unavailable';
         el.message.textContent = current ? messageFor(current.score) : 'The evening forecast is unavailable.';
+        el.summary.textContent = current ? current.reasons.join(' ') : 'Try another day or location.';
         const backdrop = skyBackground(current);
         if (el.backdropImage) {
           el.backdropImage.src = backdrop.src;
